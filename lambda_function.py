@@ -10,6 +10,7 @@ from linebot.models import (
 from menu import Menu
 
 import json
+from FAQ import FAQ
 
 
 
@@ -33,6 +34,17 @@ def lambda_handler(event, context):
             line_bot_api.reply_message(
                 event.reply_token,
                 FlexSendMessage(alt_text='常見問題',contents=reply.get_menu_flex_message()))
+    @handler.add(PostbackEvent)
+    def handle_message(event):
+        reply = FAQ()
+        if reply.is_faq(event.postback.data):
+            line_bot_api.reply_message(
+                event.reply_token,
+                FlexSendMessage(alt_text=reply.)
+            )
+            
+            
+            
     
     
         
